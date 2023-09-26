@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Image, CardBody, CardFooter, Stack, Heading, Text, Divider, Button, ButtonGroup, } from '@chakra-ui/react'
-
+import { Link } from 'react-router-dom'
 
 const Item = ({name, price, description}) => {
 
@@ -29,8 +29,10 @@ const Item = ({name, price, description}) => {
             <Button variant='solid' colorScheme='blue'>
               Comprar
             </Button>
-            <Button variant='ghost' colorScheme='blue'>
-              Añadir al Carro
+            <Button variant='solid' colorScheme='blue'>
+              <Link to ={"Item/:id"}>
+              Detalle
+              </Link>
             </Button>
           </ButtonGroup>
         </CardFooter>
