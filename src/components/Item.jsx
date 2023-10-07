@@ -30,7 +30,7 @@ const Item = ({name, price, description}) => {
               Comprar
             </Button>
             <Button variant='solid' colorScheme='blue'>
-              <Link to ={"Item/:id"}>
+              <Link to ={`/item/${Item.id}`}>
               Detalle
               </Link>
             </Button>

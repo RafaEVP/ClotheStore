@@ -40,7 +40,7 @@ const NavBar = () => {
         </Box>
     <Spacer />
         <Box p='4'>
-            <Link to ={"Cart"}>
+            <Link to ={"/cart"}>
             <CartWidget/>
             </Link>
         </Box>
