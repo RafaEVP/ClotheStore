@@ -1,36 +1,27 @@
 import ItemList from "./ItemList"
 import { useParams } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { collection, getDocs, getFirestore} from "firebase/firestore"
 
 
 const ItemlisConteiner = ({greeting}) => {
   const {category} = useParams()
-  const productos = [
-    {id:1, name:"Sueter graffiti", category: "S", price:70, description:"Sueter customizado para el cliente utilizando el estilo estilo del graffiti"},
-    {id:2, name:"Sueter pintura", category: "S", price:70, description:"Sueter customizado para el cliente utilizando el estilo estilo del pintura"},
-    {id:3, name:"Sueter dibujo", category: "S", price:60, description:"Sueter customizado para el cliente utilizando el estilo estilo del dibujo"},
-    {id:4, name:"Camisa graffiti", category: "C", price:40, description:"Camisa customizada para el cliente utilizando el estilo estilo del graffiti"},
-    {id:5, name:"Camisa pintura", category: "C", price:40, description:"Camisa customizada para el cliente utilizando el estilo estilo del pintura"},
-    {id:6, name:"Camisa dibujo", category: "C", price:30, description:"Camisa customizada para el cliente utilizando el estilo estilo del dibujo"}
-  ]
 
-  const mostrarProductos = new Promise((resolve, reject) => {
-    if (productos.length > 0){
-      setTimeout(() => {
-        resolve(productos)
-      }, 2000);
+  const [productos, setProductos] = useState ([])
 
-    }else{
-      reject("No tenemos productos en stock")
-    }
-  })
+
+  useEffect (() =>{
+      const db = getFirestore()
   
-  mostrarProductos
-    .then((resultado)=> {
-      console.log(resultado)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      const itemsCollection = collection(db,"Productos" )/*`${category}`*/
+      getDocs(itemsCollection).then((snapshot) => {
+          const docs = snapshot.docs.map((doc) => doc.data())
+          setProductos(docs)
+      })
+  
+  
+  
+  }, [])
 
   const filteredProducts = productos.filter((producto) => producto.category == category)
 

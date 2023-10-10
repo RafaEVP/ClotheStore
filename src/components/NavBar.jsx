@@ -34,7 +34,11 @@ const NavBar = () => {
                 Sueteres
                 </Link>
                 </MenuItem>
-                
+                <MenuItem>
+                <Link to = {`/category/${'P'}`}>
+                Pantalones
+                </Link>
+                </MenuItem>
             </MenuList>
         </Menu>
         </Box>

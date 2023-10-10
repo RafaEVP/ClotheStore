@@ -10,9 +10,12 @@ const ItemList = ({productos}) => {
           return(
             <div key={p.id}>
             <Item
+              p = {p}
               name = {p.name}
               price = {p.price}
               description = {p.description}
+              id = {p.id}
+              image={p.image}
             />
             </div>
           )

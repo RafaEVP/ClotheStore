@@ -1,42 +1,48 @@
 import React from 'react'
-import { Card, Image, CardBody, CardFooter, Stack, Heading, Text, Divider, Button, ButtonGroup, } from '@chakra-ui/react'
+import { Card, Image, CardBody, CardFooter, Stack, Heading, Text, Divider, Button, ButtonGroup, Center } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { CartContext } from '../context/ShoppingCartContext'
+const Item = ({name, price, description, id, image, p}) => {
 
-const Item = ({name, price, description}) => {
+const {onAdd} = useContext(CartContext)
 
   return (
-    <>
+    <> 
+    <div>
+    <Center p="1rem">
       <Card maxW='sm'>
         <CardBody>
+        <Stack mt='6' spacing='3'>
           <Image
-            src='https://img01.ztat.net/article/spp-media-p1/b213276977e6444fa7389a0e997e7ebc/6bd8c5ca2ba34799abb390ea6d3f0d4e.jpg?imwidth=1800&filter=packshot'
-            alt='Sueter estilo graffiti'
+            src={image}
+            alt='Syle of image'
             borderRadius='lg'
           />
-          <Stack mt='6' spacing='3'>
             <Heading size='md'>{name}</Heading>
-            <Text>
-              {description}
-            </Text>
             <Text color='blue.600' fontSize='2xl'>
               ${price}
             </Text>
-          </Stack>
+            </Stack>
         </CardBody>
         <Divider />
         <CardFooter>
-          <ButtonGroup spacing='2'>
-            <Button variant='solid' colorScheme='blue'>
+        <Center p="1rem">
+          <ButtonGroup spacing='125'>
+            <Button onClick={()=> onAdd(p)} variant='solid' colorScheme='blue'>
               Comprar
             </Button>
             <Button variant='solid' colorScheme='blue'>
-              <Link to ={`/item/${Item.id}`}>
+              <Link to ={`/item/${id}`}>
               Detalle
               </Link>
             </Button>
           </ButtonGroup>
+          </Center>
         </CardFooter>
       </Card>
+      </Center>
+      </div>
     </>
   )
 }
